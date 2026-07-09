@@ -371,6 +371,16 @@
             const strengthText = document.getElementById('strengthText');
 
             // ========================================
+            // CHECK IF ALREADY LOGGED IN
+            // ========================================
+            supabase.auth.getSession().then(({ data: { session } }) => {
+                if (session) {
+                    console.log('👤 User already logged in:', session.user.email);
+                    window.location.href = 'dashboard.html';
+                }
+            });
+
+            // ========================================
             // PASSWORD STRENGTH
             // ========================================
             passwordInput.addEventListener('input', function() {
@@ -513,7 +523,7 @@
                     }
 
                     // ========================================
-                    // STEP 2: Save user profile to users table (NO ID NUMBER!)
+                    // STEP 2: Save user profile to users table
                     // ========================================
                     const userData = {
                         id: authData.user.id,
@@ -531,10 +541,11 @@
 
                     if (profileError) {
                         console.error('❌ Profile save error:', profileError);
-                        // If profile save fails, but auth succeeded, show error but don't block
+                        
+                        // If it's a duplicate key error, the user might already exist
                         if (profileError.code === '23505') {
-                            // Duplicate key - user already exists in table
                             console.log('User already exists in users table');
+                            // Still continue - the auth user was created
                         } else {
                             throw profileError;
                         }
@@ -568,16 +579,6 @@
                     // Re-enable button
                     registerBtn.textContent = originalText;
                     registerBtn.disabled = false;
-                }
-            });
-
-            // ========================================
-            // CHECK IF ALREADY LOGGED IN
-            // ========================================
-            supabase.auth.getSession().then(({ data: { session } }) => {
-                if (session) {
-                    console.log('👤 User already logged in:', session.user.email);
-                    window.location.href = 'dashboard.html';
                 }
             });
         });
