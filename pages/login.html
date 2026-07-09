@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Luu Travels & Logistics</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* ===== LOGIN PAGE SPECIFIC STYLES ===== */
+        .auth-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a3c5e 0%, #0f2a42 100%);
+            padding: 100px 20px 60px;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 12px;
+            padding: 45px 40px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-logo {
+            display: block;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #f5a623;
+            padding: 3px;
+        }
+
+        .auth-container h2 {
+            text-align: center;
+            color: #1a3c5e;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f5a623;
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+        }
+
+        .form-group .input-hint {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .btn-auth {
+            width: 100%;
+            padding: 14px;
+            background: #f5a623;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .btn-auth:hover {
+            background: #d4941a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-auth:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .auth-links a {
+            color: #f5a623;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            padding: 10px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #28a745;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            padding: 10px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #f5a623;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #888;
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            color: #f5a623;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .social-btn:hover {
+            border-color: #f5a623;
+            background: #f9f9f9;
+        }
+
+        .social-btn.google {
+            color: #db4437;
+        }
+
+        .social-btn.facebook {
+            color: #4267B2;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 30px 20px;
+            }
+
+            .auth-container h2 {
+                font-size: 1.5rem;
+            }
+
+            .auth-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .social-login {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/logo.png" alt="Luu Travels" class="nav-logo">
+                <span class="brand-text">Luu Travels & Logistics</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#services">Services</a>
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#contact">Contact</a>
+                <button id="loginBtn" class="btn-login" style="display:none;">Login</button>
+                <button id="registerBtn" class="btn-register" onclick="window.location.href='register.html'">Register</button>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <img src="../assets/logo.png" alt="Luu Travels" class="auth-logo">
+            <h2>Welcome Back</h2>
+            <p class="auth-subtitle">Login to your account to book your journey</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+                </div>
+
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+
+                <button type="submit" class="btn-auth" id="loginBtnSubmit">Login</button>
+            </form>
+
+            <div class="error-message" id="loginError"></div>
+            <div class="success-message" id="loginSuccess"></div>
+
+            <div class="forgot-password">
+                <a href="forgot-password.html">Forgot password?</a>
+            </div>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <div class="social-login">
+                <button class="social-btn google" onclick="alert('Google login coming soon')">
+                    <span>G</span> Google
+                </button>
+                <button class="social-btn facebook" onclick="alert('Facebook login coming soon')">
+                    <span>f</span> Facebook
+                </button>
+            </div>
+
+            <div class="auth-links">
+                Don't have an account? <a href="register.html">Sign Up</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Luu Travels & Logistics. Moving People. Delivering Trust.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Override login form handling for this page
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginBtn = document.getElementById('loginBtnSubmit');
+            const errorDiv = document.getElementById('loginError');
+            const successDiv = document.getElementById('loginSuccess');
+
+            // Check if user is already logged in
+            if (auth.isAuthenticated()) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+
+                // Clear previous messages
+                errorDiv.classList.remove('show');
+                errorDiv.textContent = '';
+                successDiv.classList.remove('show');
+                successDiv.textContent = '';
+
+                // Validate inputs
+                if (!email || !password) {
+                    errorDiv.textContent = 'Please fill in all fields';
+                    errorDiv.classList.add('show');
+                    return;
+                }
+
+                // Show loading state
+                const originalText = loginBtn.textContent;
+                loginBtn.textContent = 'Logging in...';
+                loginBtn.disabled = true;
+
+                try {
+                    const result = await auth.signIn(email, password);
+
+                    if (result.success) {
+                        successDiv.textContent = 'Login successful! Redirecting...';
+                        successDiv.classList.add('show');
+
+                        // Store remember me preference
+                        if (rememberMe) {
+                            localStorage.setItem('rememberEmail', email);
+                        } else {
+                            localStorage.removeItem('rememberEmail');
+                        }
+
+                        // Redirect to dashboard or previous page
+                        setTimeout(() => {
+                            const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'dashboard.html';
+                            sessionStorage.removeItem('redirectAfterLogin');
+                            window.location.href = redirectUrl;
+                        }, 1500);
+                    } else {
+                        errorDiv.textContent = result.error || 'Login failed. Please try again.';
+                        errorDiv.classList.add('show');
+                        loginBtn.textContent = originalText;
+                        loginBtn.disabled = false;
+                    }
+                } catch (error) {
+                    errorDiv.textContent = 'An unexpected error occurred. Please try again.';
+                    errorDiv.classList.add('show');
+                    loginBtn.textContent = originalText;
+                    loginBtn.disabled = false;
+                    console.error('Login error:', error);
+                }
+            });
+
+            // Load remembered email
+            const rememberedEmail = localStorage.getItem('rememberEmail');
+            if (rememberedEmail) {
+                document.getElementById('loginEmail').value = rememberedEmail;
+                document.getElementById('rememberMe').checked = true;
+            }
+
+            // Update navigation based on auth state
+            auth.addListener((event, user) => {
+                if (event === 'login') {
+                    window.location.href = 'dashboard.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

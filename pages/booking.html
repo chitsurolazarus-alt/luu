@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip - Luu Travels & Logistics</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Additional booking styles */
+        .booking-section {
+            padding: 40px 0 80px;
+            background: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a3c5e;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .booking-section .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container #map {
+            width: 100%;
+            height: 450px;
+        }
+
+        .map-instructions {
+            padding: 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+
+        .map-instructions p {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .location-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .location-info div {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #eee;
+        }
+
+        .location-info div strong {
+            color: #1a3c5e;
+        }
+
+        .location-info div:last-child {
+            grid-column: span 2;
+        }
+
+        #distanceDisplay,
+        #priceDisplay {
+            color: #f5a623;
+            font-weight: 700;
+        }
+
+        .booking-form-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .booking-form-container h3 {
+            color: #1a3c5e;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f4f4f4;
+        }
+
+        .time-slots {
+            margin-bottom: 25px;
+        }
+
+        .time-slots h4 {
+            color: #1a3c5e;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        #timeSlots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #f4f4f4;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .available-trips {
+            margin-bottom: 25px;
+        }
+
+        .available-trips h4 {
+            color: #1a3c5e;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        #availableTrips {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        #availableTrips::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        #availableTrips::-webkit-scrollbar-thumb {
+            background: #f5a623;
+            border-radius: 10px;
+        }
+
+        .trip-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .trip-card:hover {
+            border-color: #f5a623;
+            background: white;
+        }
+
+        .trip-card.selected {
+            border-color: #f5a623;
+            background: rgba(245, 166, 35, 0.05);
+        }
+
+        .trip-card h4 {
+            color: #1a3c5e;
+            font-size: 1rem;
+        }
+
+        .trip-card p {
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .trip-card .price {
+            color: #f5a623;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .trip-card .btn-select {
+            padding: 6px 18px;
+            background: #f5a623;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .trip-card .btn-select:hover {
+            background: #d4941a;
+        }
+
+        .booking-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .booking-form .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .booking-form .form-group input,
+        .booking-form .form-group select,
+        .booking-form .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .booking-form .form-group input:focus,
+        .booking-form .form-group select:focus,
+        .booking-form .form-group textarea:focus {
+            outline: none;
+            border-color: #f5a623;
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+        }
+
+        .booking-form .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .payment-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-options label:hover {
+            border-color: #f5a623;
+        }
+
+        .payment-options input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #f5a623;
+            cursor: pointer;
+        }
+
+        .payment-options label:has(input:checked) {
+            border-color: #f5a623;
+            background: rgba(245, 166, 35, 0.05);
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 14px;
+            background: #f5a623;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-book:hover:not(:disabled) {
+            background: #d4941a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-book:disabled {
+            background: #ddd;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .ads-banner {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0 20px;
+            margin-bottom: 30px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .ad-card {
+            min-width: 280px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .ad-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .ad-card h4 {
+            color: #1a3c5e;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .ad-card p {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .total-price-display {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f5a623;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .route-select-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .route-select-wrapper select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .route-select-wrapper select:focus {
+            outline: none;
+            border-color: #f5a623;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .booking-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .map-container #map {
+                height: 350px;
+            }
+
+            .trip-card {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .trip-card h4 {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booking-section {
+                padding: 20px 0 60px;
+            }
+
+            .booking-section h2 {
+                font-size: 2rem;
+            }
+
+            .booking-form-container {
+                padding: 20px;
+            }
+
+            .map-container #map {
+                height: 280px;
+            }
+
+            .location-info {
+                grid-template-columns: 1fr;
+            }
+
+            .location-info div:last-child {
+                grid-column: span 1;
+            }
+
+            .trip-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .trip-card h4 {
+                grid-column: span 1;
+            }
+
+            .payment-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .ad-card {
+                min-width: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .booking-form-container {
+                padding: 15px;
+            }
+
+            .map-container #map {
+                height: 220px;
+            }
+
+            .map-instructions {
+                padding: 12px;
+            }
+
+            .location-info div {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+
+            .booking-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .trip-card {
+                padding: 12px 15px;
+            }
+
+            .trip-card .btn-select {
+                padding: 5px 14px;
+                font-size: 0.8rem;
+            }
+
+            .ad-card {
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/logo.png" alt="Luu Travels" class="nav-logo">
+                <span class="brand-text">Luu Travels & Logistics</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <button id="logoutBtn" class="btn-logout" style="background:#dc3545;color:white;padding:8px 20px;border:none;border-radius:50px;cursor:pointer;font-weight:600;">Logout</button>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
+        </div>
+    </nav>
+
+    <!-- Booking Section -->
+    <section class="booking-section" style="margin-top: 70px;">
+        <div class="container">
+            <h2>Book Your Shuttle</h2>
+            <p class="section-subtitle">Select your pickup and dropoff locations, choose a trip, and confirm your booking</p>
+            
+            <!-- Ads Banner -->
+            <div id="adsContainer" class="ads-banner"></div>
+
+            <div class="booking-grid">
+                <!-- Map Section -->
+                <div class="map-container">
+                    <div id="map"></div>
+                    <div class="map-instructions">
+                        <p>📍 Click on the map to set pickup (green) and dropoff (red) locations</p>
+                        <div class="location-info">
+                            <div><strong>Pickup:</strong> <span id="pickupLocation">Not set</span></div>
+                            <div><strong>Dropoff:</strong> <span id="dropoffLocation">Not set</span></div>
+                            <div><strong>Distance:</strong> <span id="distanceDisplay">0 km</span></div>
+                            <div><strong>Estimated Price:</strong> <span id="priceDisplay">R0.00</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="booking-form-container">
+                    <h3>Select Your Trip</h3>
+                    
+                    <!-- Route Filter -->
+                    <div class="route-select-wrapper">
+                        <select id="routeSelect">
+                            <option value="all">All Routes</option>
+                            <option value="Gauteng-Limpopo">Gauteng → Limpopo</option>
+                            <option value="Limpopo-Gauteng">Limpopo → Gauteng</option>
+                        </select>
+                    </div>
+
+                    <!-- Time Slots -->
+                    <div class="time-slots">
+                        <h4>🕐 Available Departure Times</h4>
+                        <div id="timeSlots">
+                            <p style="color:#888;font-size:0.9rem;">Loading time slots...</p>
+                        </div>
+                    </div>
+
+                    <!-- Available Trips -->
+                    <div class="available-trips">
+                        <h4>🚌 Available Trips</h4>
+                        <div id="availableTrips">
+                            <p style="color:#888;font-size:0.9rem;">Loading trips...</p>
+                        </div>
+                    </div>
+
+                    <!-- Booking Details -->
+                    <form id="bookingForm" class="booking-form">
+                        <div class="form-group">
+                            <label for="seatsInput">Number of Seats</label>
+                            <input type="number" id="seatsInput" value="1" min="1" max="14">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <div class="payment-options">
+                                <label>
+                                    <input type="radio" name="paymentMethod" value="cash" checked>
+                                    💵 Cash
+                                </label>
+                                <label>
+                                    <input type="radio" name="paymentMethod" value="card">
+                                    💳 Card
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests (Optional)</label>
+                            <textarea id="specialRequests" rows="3" placeholder="Any special requirements? (e.g., wheelchair access, extra luggage, etc.)"></textarea>
+                        </div>
+
+                        <div class="total-price-display">
+                            Total: <span id="totalPriceDisplay">R0.00</span>
+                        </div>
+
+                        <button type="button" id="bookTripBtn" class="btn-book" disabled>
+                            Confirm Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Luu Travels & Logistics. Moving People. Delivering Trust.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/map.js"></script>
+    <script src="../js/booking.js"></script>
+</body>
+</html>

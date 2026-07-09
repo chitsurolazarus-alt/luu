@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luu Travels & Logistics - Reliable Transport. Efficient Logistics. Trusted Every Time.</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== ADDITIONAL LANDING PAGE STYLES ===== */
+        .hero {
+            min-height: 100vh;
+            background-image: url('assets/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 0;
+            padding: 100px 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+            max-width: 850px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            background: rgba(245, 166, 35, 0.2);
+            border: 1px solid rgba(245, 166, 35, 0.3);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #f5a623;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero-content h1 span {
+            color: #f5a623;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            padding: 16px 45px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: #f5a623;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-hero:hover {
+            background: #d4941a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 166, 35, 0.5);
+        }
+
+        .btn-hero-outline {
+            padding: 16px 45px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-hero-outline:hover {
+            background: #ffffff;
+            color: #1a3c5e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-stats .stat-item {
+            text-align: center;
+        }
+
+        .hero-stats .stat-item .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #f5a623;
+            display: block;
+        }
+
+        .hero-stats .stat-item .label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ===== VALUES SECTION ===== */
+        .values {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+
+        .values h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a3c5e;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .value-card:hover {
+            border-color: #f5a623;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .value-card .value-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .value-card h4 {
+            color: #1a3c5e;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ===== WHY CHOOSE US ===== */
+        .why-choose {
+            padding: 80px 0;
+            background: #1a3c5e;
+            color: #ffffff;
+        }
+
+        .why-choose h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .why-choose .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .why-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .why-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .why-item .why-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .why-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #f5a623;
+        }
+
+        .why-item p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 80px 0;
+            background: #f4f4f4;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a3c5e;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-card .stars {
+            color: #f5a623;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card .client {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .client .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #f5a623;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-card .client .info .name {
+            font-weight: 600;
+            color: #1a3c5e;
+        }
+
+        .testimonial-card .client .info .role {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5a623 0%, #d4941a 100%);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-cta {
+            padding: 16px 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: #1a3c5e;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-cta:hover {
+            background: #0f2a42;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 80px 0;
+                min-height: 90vh;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 30px;
+                padding-top: 25px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-hero,
+            .btn-hero-outline {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/logo.png" alt="Luu Travels" class="nav-logo">
+                <span class="brand-text">Luu <span>Travels</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#values">Values</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+                <button id="loginBtn" class="btn-login">Login</button>
+                <button id="registerBtn" class="btn-register">Register</button>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-badge">🚐 Est. 2023</span>
+            <h1>Moving People. <span>Delivering Trust.</span></h1>
+            <p>Reliable, safe, and affordable transportation solutions between Gauteng and Limpopo. Book your shuttle today.</p>
+            <div class="hero-buttons">
+                <button id="bookNowBtn" class="btn-hero">🚐 Book Your Ride</button>
+                <a href="#services" class="btn-hero-outline">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="number">2023</span>
+                    <span class="label">Year Established</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">14</span>
+                    <span class="label">Seats per Shuttle</span>
+                </div>
+                <div class="stat-item">
+                    <span class="number">100%</span>
+                    <span class="label">Customer Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p class="section-subtitle">Comprehensive transportation solutions tailored to your needs</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="service-icon">🚐</span>
+                    <h3>Passenger Transportation</h3>
+                    <p>Safe and comfortable transportation for individuals and groups across various destinations.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🔄</span>
+                    <h3>Shuttle Services</h3>
+                    <p>Reliable shuttle services for corporate clients, institutions, and private customers.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">✈️</span>
+                    <h3>Airport Transfers</h3>
+                    <p>Professional airport pickup and drop-off services ensuring timely arrivals and departures.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏢</span>
+                    <h3>Corporate Transportation</h3>
+                    <p>Dedicated transportation solutions for business meetings, conferences, and corporate travel.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🎉</span>
+                    <h3>Event Transportation</h3>
+                    <p>Transportation services for weddings, conferences, sporting events, and special occasions.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">👥</span>
+                    <h3>Staff Transportation</h3>
+                    <p>Daily transportation solutions for employees and workforce mobility.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏫</span>
+                    <h3>School Transport</h3>
+                    <p>Safe and dependable transport for schools, educational institutions, and organized groups.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📦</span>
+                    <h3>Parcel & Goods Delivery</h3>
+                    <p>Fast and secure transportation of parcels, packages, and goods.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🪑</span>
+                    <h3>Furniture Transportation</h3>
+                    <p>Professional furniture relocation and transportation services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p class="section-subtitle">Proudly South African-owned transportation and logistics company</p>
+            <div class="about-grid">
+                <div class="about-item">
+                    <h4>🎯 Mission</h4>
+                    <p>To provide safe, reliable, affordable, and professional transportation and logistics solutions that connect people and businesses efficiently while exceeding customer expectations through exceptional service delivery.</p>
+                </div>
+                <div class="about-item">
+                    <h4>👁️ Vision</h4>
+                    <p>To become a leading transportation and logistics company in South Africa, recognized for exceptional customer service, reliability, innovation, and operational excellence.</p>
+                </div>
+                <div class="about-item">
+                    <h4>📜 Our Story</h4>
+                    <p>Luu Travels & Logistics is a proudly South African-owned transportation and logistics company established in 2023. We provide reliable, safe, affordable, and professional transportation solutions throughout South Africa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VALUES SECTION ===== -->
+    <section id="values" class="values">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            <p class="section-subtitle">The principles that guide everything we do</p>
+            <div class="values-grid">
+                <div class="value-card">
+                    <span class="value-icon">💼</span>
+                    <h4>Professionalism</h4>
+                    <p>We maintain the highest standards in service delivery and customer interactions.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🔄</span>
+                    <h4>Reliability</h4>
+                    <p>We consistently provide dependable and punctual services.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🛡️</span>
+                    <h4>Safety</h4>
+                    <p>We prioritize the safety of our passengers, employees, cargo, and communities.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">⭐</span>
+                    <h4>Integrity</h4>
+                    <p>We conduct our business honestly, ethically, and transparently.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">😊</span>
+                    <h4>Customer Satisfaction</h4>
+                    <p>We strive to exceed customer expectations at every opportunity.</p>
+                </div>
+                <div class="value-card">
+                    <span class="value-icon">🏆</span>
+                    <h4>Excellence</h4>
+                    <p>We continuously improve our services to deliver superior value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="why-choose">
+        <div class="container">
+            <h2>Why Choose Luu Travels</h2>
+            <p class="section-subtitle">What sets us apart from the rest</p>
+            <div class="why-grid">
+                <div class="why-item">
+                    <span class="why-icon">👨‍✈️</span>
+                    <h4>Professional Drivers</h4>
+                    <p>Experienced and trained drivers with valid Professional Driving Permits (PrDP).</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">🚐</span>
+                    <h4>Well-Maintained Vehicles</h4>
+                    <p>Regularly inspected and maintained vehicles ensuring safety and comfort.</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">💰</span>
+                    <h4>Competitive Pricing</h4>
+                    <p>Affordable rates with transparent pricing at R2.50 per kilometer.</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">⏰</span>
+                    <h4>Reliable & Punctual</h4>
+                    <p>Consistent on-time performance you can count on.</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">🤝</span>
+                    <h4>Customer-Focused</h4>
+                    <p>Personalized service with a commitment to your satisfaction.</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">🔄</span>
+                    <h4>Flexible Solutions</h4>
+                    <p>Customized transport solutions tailored to your specific needs.</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">🛡️</span>
+                    <h4>Safety Commitment</h4>
+                    <p>Unwavering dedication to safety and quality standards.</p>
+                </div>
+                <div class="why-item">
+                    <span class="why-icon">🌍</span>
+                    <h4>Nationwide Capability</h4>
+                    <p>Service coverage across South Africa with focus on Gauteng and Limpopo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <p class="section-subtitle">Real stories from our satisfied customers</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"Luu Travels provided exceptional service for our corporate event. Professional drivers, comfortable vehicles, and punctual service. Highly recommended!"</blockquote>
+                    <div class="client">
+                        <div class="avatar">TM</div>
+                        <div class="info">
+                            <div class="name">Thabo Mokoena</div>
+                            <div class="role">Corporate Client, Johannesburg</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"I use Luu Travels regularly for my trips between Gauteng and Limpopo. Always reliable, comfortable, and the drivers are very professional. Best shuttle service in South Africa!"</blockquote>
+                    <div class="client">
+                        <div class="avatar">LN</div>
+                        <div class="info">
+                            <div class="name">Lerato Nkosi</div>
+                            <div class="role">Regular Customer, Polokwane</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"We booked Luu Travels for our family reunion transportation. The service was outstanding - comfortable rides, friendly drivers, and they accommodated all our special requests."</blockquote>
+                    <div class="client">
+                        <div class="avatar">MP</div>
+                        <div class="info">
+                            <div class="name">Maria Patel</div>
+                            <div class="role">Event Organizer, Pretoria</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">We're here to help you with all your transportation needs</p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="icon">📞</span>
+                    <h4>Phone</h4>
+                    <p>076 845 7061</p>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">✉️</span>
+                    <h4>Email</h4>
+                    <p>LuuTravels611@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <h4>Address</h4>
+                    <p>Windmill Park Ext 32<br>Boksburg, Gauteng</p>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">🕐</span>
+                    <h4>Working Hours</h4>
+                    <p>Mon - Sat: 6:00 AM - 10:00 PM<br>Sunday: 8:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Book Your Journey?</h2>
+            <p>Experience the Luu Travels difference. Book your shuttle today and travel with confidence.</p>
+            <button id="ctaBookBtn" class="btn-cta">🚐 Book Now</button>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Luu Travels & Logistics</h4>
+                    <p>Reliable Transport. Efficient Logistics. Trusted Every Time.</p>
+                    <p style="margin-top:10px;font-size:0.85rem;opacity:0.6;">Established 2023</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">About</a>
+                    <a href="#values">Values</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="#services">Passenger Transport</a>
+                    <a href="#services">Shuttle Services</a>
+                    <a href="#services">Airport Transfers</a>
+                    <a href="#services">Corporate Transport</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="tel:0768457061">📞 076 845 7061</a>
+                    <a href="mailto:LuuTravels611@gmail.com">✉️ LuuTravels611@gmail.com</a>
+                    <a href="#">📍 Windmill Park Ext 32, Boksburg</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Luu Travels & Logistics (Pty) Ltd. All rights reserved. <span>Moving People. Delivering Trust.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // ===== ADDITIONAL LANDING PAGE JAVASCRIPT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Book Now buttons
+            const bookNowBtn = document.getElementById('bookNowBtn');
+            const ctaBookBtn = document.getElementById('ctaBookBtn');
+
+            function handleBookNow() {
+                if (auth.isAuthenticated()) {
+                    window.location.href = 'pages/booking.html';
+                } else {
+                    sessionStorage.setItem('redirectAfterLogin', 'pages/booking.html');
+                    window.location.href = 'pages/login.html';
+                }
+            }
+
+            if (bookNowBtn) {
+                bookNowBtn.addEventListener('click', handleBookNow);
+            }
+
+            if (ctaBookBtn) {
+                ctaBookBtn.addEventListener('click', handleBookNow);
+            }
+
+            // Auto-scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const navHeight = document.querySelector('.navbar')?.offsetHeight || 70;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            let lastScrollY = 0;
+
+            window.addEventListener('scroll', function() {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollY = currentScrollY;
+            }, { passive: true });
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+            }
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    if (hamburger) {
+                        hamburger.textContent = '☰';
+                    }
+                });
+            });
+
+            // Close mobile menu on outside click
+            document.addEventListener('click', function(e) {
+                if (navLinks.classList.contains('active') && 
+                    !navLinks.contains(e.target) && 
+                    !hamburger.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    if (hamburger) {
+                        hamburger.textContent = '☰';
+                    }
+                }
+            });
+
+            // Animate stats on scroll
+            const stats = document.querySelectorAll('.hero-stats .number');
+            let animated = false;
+
+            function animateStats() {
+                if (animated) return;
+                
+                const heroSection = document.querySelector('.hero');
+                const rect = heroSection.getBoundingClientRect();
+                
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    animated = true;
+                    stats.forEach(stat => {
+                        const finalValue = stat.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const isYear = finalValue === '2023';
+                        const numValue = isYear ? 2023 : parseFloat(finalValue);
+                        
+                        if (isYear) {
+                            stat.style.opacity = '1';
+                            return;
+                        }
+                        
+                        let current = 0;
+                        const increment = numValue / 40;
+                        const interval = setInterval(() => {
+                            current += increment;
+                            if (current >= numValue) {
+                                current = numValue;
+                                clearInterval(interval);
+                            }
+                            if (isPercentage) {
+                                stat.textContent = Math.round(current) + '%';
+                            } else {
+                                stat.textContent = Math.round(current);
+                            }
+                        }, 30);
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', animateStats);
+            setTimeout(animateStats, 500);
+
+            // Intersection Observer for service cards
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.service-card, .value-card, .why-item, .testimonial-card, .about-item').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add animation styles
+            const animStyle = document.createElement('style');
+            animStyle.textContent = `
+                .service-card, .value-card, .why-item, .testimonial-card, .about-item {
+                    opacity: 0;
+                    transform: translateY(30px);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .service-card.animate-in, 
+                .value-card.animate-in, 
+                .why-item.animate-in, 
+                .testimonial-card.animate-in, 
+                .about-item.animate-in {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                
+                .service-card:nth-child(2) { transition-delay: 0.05s; }
+                .service-card:nth-child(3) { transition-delay: 0.1s; }
+                .service-card:nth-child(4) { transition-delay: 0.15s; }
+                .service-card:nth-child(5) { transition-delay: 0.2s; }
+                .service-card:nth-child(6) { transition-delay: 0.25s; }
+                .service-card:nth-child(7) { transition-delay: 0.3s; }
+                .service-card:nth-child(8) { transition-delay: 0.35s; }
+                .service-card:nth-child(9) { transition-delay: 0.4s; }
+                
+                .value-card:nth-child(2) { transition-delay: 0.05s; }
+                .value-card:nth-child(3) { transition-delay: 0.1s; }
+                .value-card:nth-child(4) { transition-delay: 0.15s; }
+                .value-card:nth-child(5) { transition-delay: 0.2s; }
+                .value-card:nth-child(6) { transition-delay: 0.25s; }
+                
+                .why-item:nth-child(2) { transition-delay: 0.05s; }
+                .why-item:nth-child(3) { transition-delay: 0.1s; }
+                .why-item:nth-child(4) { transition-delay: 0.15s; }
+                .why-item:nth-child(5) { transition-delay: 0.2s; }
+                .why-item:nth-child(6) { transition-delay: 0.25s; }
+                .why-item:nth-child(7) { transition-delay: 0.3s; }
+                .why-item:nth-child(8) { transition-delay: 0.35s; }
+            `;
+            document.head.appendChild(animStyle);
+        });
+    </script>
+</body>
+</html>

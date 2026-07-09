@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Luu Travels & Logistics</title>
+    <link rel="icon" type="image/png" href="../assets/logo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/logo.png" alt="Luu Travels" class="nav-logo">
+                <span class="brand-text">Luu Travels & Logistics</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="booking.html">Book a Trip</a>
+                <button id="logoutBtn" class="btn-logout" style="background:#dc3545;color:white;padding:8px 20px;border:none;border-radius:50px;cursor:pointer;font-weight:600;">Logout</button>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section" style="margin-top: 80px; padding: 40px 0 80px; background: #f4f4f4; min-height: 100vh;">
+        <div class="container">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:30px;">
+                <h2 style="font-size:2rem;color:#1a3c5e;font-weight:800;margin:0;">My Dashboard</h2>
+                <button class="btn-refresh" onclick="location.reload()" style="padding:10px 20px;background:#f5a623;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 Refresh</button>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- User Info Card -->
+                <div class="dashboard-card">
+                    <h3><span class="card-icon">👤</span> Profile Information</h3>
+                    <div id="userInfo">
+                        <div style="text-align:center;padding:20px;color:#888;">
+                            <span style="font-size:2rem;">⏳</span>
+                            <p>Loading profile...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Bookings Card -->
+                <div class="dashboard-card">
+                    <h3><span class="card-icon">📋</span> My Bookings</h3>
+                    <div id="myBookings">
+                        <div style="text-align:center;padding:20px;color:#888;">
+                            <span style="font-size:2rem;">⏳</span>
+                            <p>Loading bookings...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track Driver Card -->
+                <div class="dashboard-card">
+                    <h3><span class="card-icon">🚗</span> Track Your Driver</h3>
+                    <div id="trackDriverInfo">
+                        <p style="color:#888;margin-bottom:12px;">Select a booking to track your driver in real-time</p>
+                        <select id="bookingSelect" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:0.95rem;margin-bottom:12px;">
+                            <option value="">Select a booking</option>
+                        </select>
+                        <button id="trackBtn" style="width:100%;padding:12px;background:#17a2b8;color:white;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;">🚗 Track Driver</button>
+                    </div>
+                    <div id="driverLocation" style="display:none;margin-top:15px;padding-top:15px;border-top:2px solid #f4f4f4;">
+                        <div class="driver-info-grid">
+                            <p><strong>Driver:</strong> <span id="driverName">-</span></p>
+                            <p><strong>Phone:</strong> <span id="driverPhone">-</span></p>
+                            <p><strong>Vehicle:</strong> <span id="driverVehicle">-</span></p>
+                            <p><strong>Status:</strong> <span id="driverStatus" class="status active">Active</span></p>
+                        </div>
+                        <div id="trackMap" style="width:100%;height:300px;border-radius:8px;overflow:hidden;border:2px solid #ddd;display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Luu Travels & Logistics. Moving People. Delivering Trust.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
