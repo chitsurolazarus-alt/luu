@@ -18,7 +18,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1a3c5e 0%, #0f2a42 100%);
+            background: linear-gradient(135deg, #111C5A 0%, #0A1240 100%);
             padding: 20px;
         }
 
@@ -53,13 +53,13 @@
             margin: 0 auto 15px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #f5a623;
+            border: 3px solid #F5A623;
             padding: 3px;
         }
 
         .admin-login-box h2 {
             text-align: center;
-            color: #1a3c5e;
+            color: #111C5A;
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 5px;
@@ -67,7 +67,7 @@
 
         .login-subtitle {
             text-align: center;
-            color: #888;
+            color: #8888A8;
             font-size: 0.9rem;
             margin-bottom: 30px;
         }
@@ -80,14 +80,14 @@
             display: block;
             margin-bottom: 6px;
             font-weight: 600;
-            color: #333;
+            color: #1A1A2E;
             font-size: 0.9rem;
         }
 
         .form-group input {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #ddd;
+            border: 2px solid #E8E8F0;
             border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -96,20 +96,20 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #f5a623;
+            border-color: #F5A623;
             box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
         }
 
         .form-group .input-hint {
             font-size: 0.8rem;
-            color: #888;
+            color: #8888A8;
             margin-top: 4px;
         }
 
         .btn-login-admin {
             width: 100%;
             padding: 14px;
-            background: #f5a623;
+            background: #F5A623;
             color: white;
             border: none;
             border-radius: 8px;
@@ -122,7 +122,7 @@
         }
 
         .btn-login-admin:hover {
-            background: #d4941a;
+            background: #D4941A;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
         }
@@ -134,7 +134,7 @@
         }
 
         .error-message {
-            color: #dc3545;
+            color: #DC3545;
             margin-top: 15px;
             display: none;
             text-align: center;
@@ -148,15 +148,30 @@
             display: block;
         }
 
+        .success-message {
+            color: #28A745;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            padding: 10px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
         .back-link {
             text-align: center;
             margin-top: 20px;
             font-size: 0.9rem;
-            color: #888;
+            color: #8888A8;
         }
 
         .back-link a {
-            color: #f5a623;
+            color: #F5A623;
             text-decoration: none;
             font-weight: 600;
         }
@@ -167,7 +182,7 @@
 
         .admin-badge {
             display: inline-block;
-            background: #f5a623;
+            background: #F5A623;
             color: white;
             padding: 2px 12px;
             border-radius: 50px;
@@ -179,14 +194,25 @@
         }
 
         .security-note {
-            background: #f8f9fa;
+            background: #F8F9FA;
             padding: 12px 16px;
             border-radius: 8px;
             font-size: 0.8rem;
-            color: #888;
+            color: #8888A8;
             margin-top: 20px;
             text-align: center;
-            border: 1px solid #eee;
+            border: 1px solid #E8E8F0;
+        }
+
+        .credentials-hint {
+            background: #FFF3CD;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #856404;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #FFC107;
         }
 
         @media (max-width: 480px) {
@@ -215,6 +241,12 @@
             <h2>Admin Login</h2>
             <p class="login-subtitle">Access the administration panel</p>
 
+            <div class="credentials-hint">
+                <strong>Default Credentials:</strong><br>
+                Email: princemahapa20@gmail.com<br>
+                Password: Prince@2001
+            </div>
+
             <form id="adminLoginForm">
                 <div class="form-group">
                     <label for="adminEmail">Email Address</label>
@@ -232,29 +264,30 @@
             </form>
 
             <div class="error-message" id="loginError"></div>
+            <div class="success-message" id="loginSuccess"></div>
 
             <div class="security-note">
                 🔒 This area is restricted to authorized administrators only.
             </div>
 
             <div class="back-link">
-                <a href="../index.html">← Back to Homepage</a>
+                <a href="../index.html">← Back to Homepage</a> | 
+                <a href="login.html">User Login</a>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Admin credentials from config
-        const ADMIN_CREDENTIALS = {
-            email: 'princemahapa20@gmail.com',
-            password: 'Prince@2001'
-        };
-
-        // Supabase configuration
+        // ===== SUPABASE CONFIGURATION =====
         const SUPABASE_CONFIG = {
             url: 'https://gwzpzvwermsfnputttdo.supabase.co',
             anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3enB6dndlcm1zZm5wdXR0dGRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNzkxODYsImV4cCI6MjA5Nzk1NTE4Nn0.y4v8P0TxS4yfjj9DfWF_l1B8OBSl_ybv4vZBuVUN7Oc'
+        };
+
+        const ADMIN_CREDENTIALS = {
+            email: 'princemahapa20@gmail.com',
+            password: 'Prince@2001'
         };
 
         const supabase = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
@@ -263,6 +296,7 @@
             const loginForm = document.getElementById('adminLoginForm');
             const loginBtn = document.getElementById('adminLoginBtn');
             const errorDiv = document.getElementById('loginError');
+            const successDiv = document.getElementById('loginSuccess');
 
             // Check if already logged in
             supabase.auth.getSession().then(({ data: { session } }) => {
@@ -277,12 +311,14 @@
             loginForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
-                const email = document.getElementById('adminEmail').value;
+                const email = document.getElementById('adminEmail').value.trim();
                 const password = document.getElementById('adminPassword').value;
 
-                // Clear previous error
+                // Clear previous messages
                 errorDiv.classList.remove('show');
                 errorDiv.textContent = '';
+                successDiv.classList.remove('show');
+                successDiv.textContent = '';
 
                 // Validate
                 if (!email || !password) {
@@ -297,6 +333,7 @@
                 loginBtn.disabled = true;
 
                 try {
+                    // Attempt login with Supabase
                     const { data, error } = await supabase.auth.signInWithPassword({
                         email: email,
                         password: password
@@ -312,27 +349,20 @@
                         throw new Error('Unauthorized access. This account does not have admin privileges.');
                     }
 
-                    // Login successful - redirect to admin dashboard
-                    window.location.href = 'admin-dashboard.html';
+                    // Login successful
+                    successDiv.textContent = 'Login successful! Redirecting to admin dashboard...';
+                    successDiv.classList.add('show');
+
+                    setTimeout(() => {
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1500);
 
                 } catch (error) {
                     errorDiv.textContent = error.message || 'Login failed. Please check your credentials.';
                     errorDiv.classList.add('show');
                     loginBtn.textContent = originalText;
                     loginBtn.disabled = false;
-                }
-            });
-
-            // Auto-fill with admin credentials on focus
-            document.getElementById('adminEmail').addEventListener('focus', function() {
-                if (!this.value) {
-                    this.value = ADMIN_CREDENTIALS.email;
-                }
-            });
-
-            document.getElementById('adminPassword').addEventListener('focus', function() {
-                if (!this.value) {
-                    this.value = ADMIN_CREDENTIALS.password;
+                    console.error('Admin login error:', error);
                 }
             });
         });
