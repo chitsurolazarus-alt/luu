@@ -221,40 +221,6 @@
             padding: 0 15px;
         }
 
-        .social-login {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .social-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid #E8E8F0;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .social-btn:hover {
-            border-color: #F5A623;
-            background: #F8F9FA;
-        }
-
-        .social-btn.google {
-            color: #DB4437;
-        }
-
-        .social-btn.facebook {
-            color: #4267B2;
-        }
-
         .admin-link {
             text-align: center;
             margin-top: 15px;
@@ -285,10 +251,6 @@
             .auth-logo {
                 width: 60px;
                 height: 60px;
-            }
-
-            .social-login {
-                flex-direction: column;
             }
         }
     </style>
@@ -350,15 +312,6 @@
                 <span>or</span>
             </div>
 
-            <div class="social-login">
-                <button class="social-btn google" onclick="alert('Google login coming soon')">
-                    <span>G</span> Google
-                </button>
-                <button class="social-btn facebook" onclick="alert('Facebook login coming soon')">
-                    <span>f</span> Facebook
-                </button>
-            </div>
-
             <div class="auth-links">
                 Don't have an account? <a href="register.html">Sign Up</a>
             </div>
@@ -397,9 +350,12 @@
             const errorDiv = document.getElementById('loginError');
             const successDiv = document.getElementById('loginSuccess');
 
-            // Check if user is already logged in
+            // ========================================
+            // CHECK IF ALREADY LOGGED IN
+            // ========================================
             supabase.auth.getSession().then(({ data: { session } }) => {
                 if (session) {
+                    console.log('User already logged in:', session.user.email);
                     // Check if admin
                     if (session.user.email === ADMIN_CREDENTIALS.email) {
                         window.location.href = 'admin-dashboard.html';
@@ -409,13 +365,18 @@
                 }
             });
 
-            // Load remembered email
+            // ========================================
+            // LOAD REMEMBERED EMAIL
+            // ========================================
             const rememberedEmail = localStorage.getItem('rememberEmail');
             if (rememberedEmail) {
                 document.getElementById('loginEmail').value = rememberedEmail;
                 document.getElementById('rememberMe').checked = true;
             }
 
+            // ========================================
+            // FORM SUBMISSION
+            // ========================================
             loginForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
@@ -442,14 +403,19 @@
                 loginBtn.disabled = true;
 
                 try {
+                    console.log('Attempting to login:', email);
+
                     const { data, error } = await supabase.auth.signInWithPassword({
                         email: email,
                         password: password
                     });
 
                     if (error) {
+                        console.error('Login error:', error);
                         throw error;
                     }
+
+                    console.log('Login successful:', data.user.email);
 
                     // Store remember me preference
                     if (rememberMe) {
@@ -461,7 +427,7 @@
                     successDiv.textContent = 'Login successful! Redirecting...';
                     successDiv.classList.add('show');
 
-                    // Check if admin
+                    // Check if admin and redirect
                     setTimeout(() => {
                         if (email === ADMIN_CREDENTIALS.email) {
                             window.location.href = 'admin-dashboard.html';
@@ -473,11 +439,11 @@
                     }, 1500);
 
                 } catch (error) {
+                    console.error('Login error:', error);
                     errorDiv.textContent = error.message || 'Login failed. Please check your credentials.';
                     errorDiv.classList.add('show');
                     loginBtn.textContent = originalText;
                     loginBtn.disabled = false;
-                    console.error('Login error:', error);
                 }
             });
         });
