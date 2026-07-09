@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | Luu Travels & Logistics</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="auth-wrapper" style="background:linear-gradient(135deg, #0B133F, var(--primary));">
+    <div class="auth-card">
+        <a href="../index.html" class="brand">
+            <img src="../assets/logo.png" alt="Luu Travels logo">
+            <span class="brand-name">Luu Travels <span>& Logistics</span></span>
+        </a>
+        <h2>Admin Portal</h2>
+        <p class="subtitle">Restricted access — Luu Travels & Logistics staff only.</p>
+
+        <form id="adminLoginForm" novalidate>
+            <div class="form-group">
+                <label for="email">Admin Email</label>
+                <input type="email" id="email" required placeholder="admin@luutravels.co.za">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Your password">
+            </div>
+            <div style="margin-top:20px;">
+                <button type="submit" class="btn btn-navy btn-block" id="adminLoginBtn">Log In to Admin</button>
+            </div>
+        </form>
+        <div class="form-footer"><a href="login.html" style="color:var(--gray-600);">&larr; Back to customer login</a></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+    document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('adminLoginBtn');
+        btn.disabled = true;
+        btn.textContent = 'Verifying...';
+
+        try {
+            const { profile } = await AuthManager.login({ email, password });
+            if (profile.role !== 'admin') {
+                await AuthManager.logout();
+                showToast('This account does not have admin access.', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Log In to Admin';
+                return;
+            }
+            showToast('Welcome back, admin.', 'success');
+            setTimeout(() => window.location.href = 'admin-dashboard.html', 600);
+        } catch (err) {
+            showToast(err.message || 'Login failed.', 'error');
+            btn.disabled = false;
+            btn.textContent = 'Log In to Admin';
+        }
+    });
+</script>
+</body>
+</html>

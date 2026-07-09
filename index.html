@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luu Travels & Logistics | Moving People. Delivering Trust.</title>
+<meta name="description" content="Safe, reliable shuttle transport between Gauteng and Limpopo. Book your seat online with Luu Travels & Logistics.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="brand">
+            <img src="assets/logo.png" alt="Luu Travels & Logistics logo">
+            <span class="brand-name">Luu Travels <span>& Logistics</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#why">Why Us</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="pages/login.html" class="btn btn-outline btn-sm">Login</a>
+            <a href="pages/register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#why">Why Us</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <a href="pages/login.html" class="btn btn-outline btn-sm">Login</a>
+        <a href="pages/register.html" class="btn btn-primary btn-sm">Register</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="eyebrow">Gauteng ⇄ Limpopo Shuttle Service</span>
+            <h1>Moving People. Delivering Trust.</h1>
+            <p>Book a safe, comfortable shuttle seat between Gauteng and Limpopo in minutes. Track your driver live, pay your way, and travel with a team that treats every trip like it matters.</p>
+            <div class="hero-actions">
+                <a href="pages/register.html" class="btn btn-primary">Book Your Trip</a>
+                <a href="#services" class="btn btn-outline">Explore Services</a>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">2023</div>
+                    <div class="stat-label">Established</div>
+                </div>
+                <div>
+                    <div class="stat-num">14</div>
+                    <div class="stat-label">Seats per shuttle</div>
+                </div>
+                <div>
+                    <div class="stat-num">R2.50</div>
+                    <div class="stat-label">Per kilometer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ADS BANNER (populated dynamically from admin-managed ads) -->
+<section class="section" id="ads-section" style="display:none; padding-top:40px; padding-bottom:0;">
+    <div class="container">
+        <div class="section-header" style="margin-bottom:24px;">
+            <span class="eyebrow">Announcements</span>
+            <h2 style="font-size:1.6rem;">Latest from Luu Travels</h2>
+        </div>
+        <div class="ads-banner" id="adsBanner"></div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">What We Offer</span>
+            <h2>Our Services</h2>
+            <p>From daily commuter shuttles to logistics for organizations, we move people and goods with the same care.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🚐</div>
+                <h3>Shuttle Transport</h3>
+                <p>Scheduled shuttle trips between Gauteng and Limpopo, booked online with real-time seat availability.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Corporate & Government Transport</h3>
+                <p>Reliable transportation solutions for departments, municipalities, state-owned entities and corporates.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Institutional Transport</h3>
+                <p>Safe, scheduled trips for educational institutions and organized groups.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎉</div>
+                <h3>Event Transportation</h3>
+                <p>Group shuttle solutions for event organizers who need dependable logistics on the day.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📦</div>
+                <h3>Logistics Solutions</h3>
+                <p>Efficient goods and courier logistics for SMEs and businesses across our routes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧳</div>
+                <h3>Tourist & Individual Travel</h3>
+                <p>Comfortable, affordable travel for tourists and individual customers exploring Gauteng and Limpopo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div>
+                <span class="eyebrow">Who We Are</span>
+                <h2 style="margin-top:8px;">About Luu Travels & Logistics</h2>
+                <p style="color:var(--gray-600); margin-top:16px;">Founded in 2023 and based in Windmill Park Ext 32, Boksburg, Luu Travels & Logistics (Pty) Ltd connects Gauteng and Limpopo with dependable shuttle and logistics services built on professionalism and trust.</p>
+            </div>
+            <div class="about-cards">
+                <div class="about-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide safe, reliable, affordable, and professional transportation and logistics solutions that connect people and businesses efficiently while exceeding customer expectations through exceptional service delivery.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Vision</h3>
+                    <p>To become a leading transportation and logistics company in South Africa, recognized for exceptional customer service, reliability, innovation, and operational excellence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">What Drives Us</span>
+            <h2>Our Core Values</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-chip"><div class="value-icon">🤝</div><h4>Professionalism</h4></div>
+            <div class="value-chip"><div class="value-icon">⏱️</div><h4>Reliability</h4></div>
+            <div class="value-chip"><div class="value-icon">🛡️</div><h4>Safety</h4></div>
+            <div class="value-chip"><div class="value-icon">✅</div><h4>Integrity</h4></div>
+            <div class="value-chip"><div class="value-icon">😊</div><h4>Customer Satisfaction</h4></div>
+            <div class="value-chip"><div class="value-icon">⭐</div><h4>Excellence</h4></div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section section-alt" id="why">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">The Luu Difference</span>
+            <h2>Why Choose Us</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="num">01</div>
+                <div><h4>Live Driver Tracking</h4><p>Watch your shuttle approach in real time from your dashboard.</p></div>
+            </div>
+            <div class="why-item">
+                <div class="num">02</div>
+                <div><h4>Transparent Pricing</h4><p>A simple R2.50/km rate with no hidden fees, shown before you book.</p></div>
+            </div>
+            <div class="why-item">
+                <div class="num">03</div>
+                <div><h4>Approved, Vetted Drivers</h4><p>Every driver is verified and approved by our team before taking passengers.</p></div>
+            </div>
+            <div class="why-item">
+                <div class="num">04</div>
+                <div><h4>Flexible Payment</h4><p>Pay by cash now, with card payments coming soon.</p></div>
+            </div>
+            <div class="why-item">
+                <div class="num">05</div>
+                <div><h4>Built for Every Traveler</h4><p>Trusted by government, corporates, institutions, and individuals alike.</p></div>
+            </div>
+            <div class="why-item">
+                <div class="num">06</div>
+                <div><h4>Simple Online Booking</h4><p>Pick your route, choose a time slot, and confirm your seat in minutes.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">Customer Stories</span>
+            <h2>What Our Passengers Say</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Booking was so easy and I could see exactly where my shuttle was. Got to Polokwane right on time."</p>
+                <div class="testimonial-author"><div class="avatar">T</div> Thandi M.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Our department has used Luu Travels for several trips now. Always professional and on schedule."</p>
+                <div class="testimonial-author"><div class="avatar">S</div> Sipho K.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Affordable, safe, and the driver was friendly. Will definitely book again for my next trip home."</p>
+                <div class="testimonial-author"><div class="avatar">N</div> Naledi P.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section class="section cta-section" id="contact">
+    <div class="container">
+        <span class="eyebrow" style="color:var(--accent);">Get In Touch</span>
+        <h2 style="margin-top:8px;">Ready to Travel With Us?</h2>
+        <p style="color:var(--gray-200); max-width:520px; margin:12px auto 0;">Register in minutes and book your next shuttle between Gauteng and Limpopo.</p>
+        <div style="margin-top:28px;">
+            <a href="pages/register.html" class="btn btn-primary">Create an Account</a>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item"><div class="label">Phone</div>076 845 7061</div>
+            <div class="contact-item"><div class="label">Email</div>LuuTravels611@gmail.com</div>
+            <div class="contact-item"><div class="label">Address</div>Windmill Park Ext 32, Boksburg, Gauteng, South Africa</div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="brand" style="color:#fff; margin-bottom:14px;">
+                    <img src="assets/logo.png" alt="Luu Travels logo">
+                    <span class="brand-name" style="color:#fff;">Luu Travels <span>& Logistics</span></span>
+                </div>
+                <p>Moving People. Delivering Trust. Safe and reliable shuttle transport between Gauteng and Limpopo since 2023.</p>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#why">Why Choose Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="pages/login.html">Login</a></li>
+                    <li><a href="pages/register.html">Register</a></li>
+                    <li><a href="pages/admin-login.html">Admin</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>076 845 7061</li>
+                    <li>LuuTravels611@gmail.com</li>
+                    <li>Windmill Park Ext 32, Boksburg</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2023–2026 Luu Travels & Logistics (Pty) Ltd. All rights reserved.</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

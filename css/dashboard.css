@@ -1,0 +1,48 @@
+/* =====================================================================
+   LUU TRAVELS & LOGISTICS - USER DASHBOARD STYLES
+   ===================================================================== */
+
+.dash-page { background: var(--gray-100); min-height: 100vh; }
+.dash-header { background: var(--primary); color: var(--secondary); padding: 40px 0; }
+.dash-header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.dash-welcome h1 { color: var(--secondary); font-size: 1.5rem; }
+.dash-welcome p { color: var(--gray-200); font-size: 0.9rem; margin-top: 4px; }
+
+.dash-body { max-width: 1100px; margin: -30px auto 0; padding: 0 24px 60px; }
+
+.dash-profile-card {
+    background: var(--secondary); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 24px; display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px;
+}
+.dash-profile-avatar {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--primary); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+    flex-shrink: 0;
+}
+.dash-profile-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; flex: 1; }
+.dash-profile-info .label { font-size: 0.75rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; }
+.dash-profile-info .value { font-weight: 600; color: var(--dark-text); margin-top: 2px; }
+
+.dash-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+.dash-tab {
+    padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--gray-200); background: var(--secondary);
+    font-weight: 600; font-size: 0.88rem; cursor: pointer; color: var(--gray-600);
+}
+.dash-tab.active { background: var(--primary); color: var(--secondary); border-color: var(--primary); }
+
+.bookings-list { display: flex; flex-direction: column; gap: 16px; }
+.booking-card { background: var(--secondary); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+.booking-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+.booking-ref { font-family: var(--font-display); font-weight: 700; color: var(--primary); }
+.booking-route { color: var(--gray-600); font-size: 0.88rem; margin-top: 2px; }
+.booking-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin: 14px 0; }
+.booking-details .label { font-size: 0.72rem; color: var(--gray-600); text-transform: uppercase; }
+.booking-details .value { font-weight: 600; font-size: 0.9rem; margin-top: 2px; }
+.booking-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.tracking-panel { display: none; margin-top: 16px; border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); }
+.tracking-panel.open { display: block; }
+#tracking-map { height: 320px; width: 100%; }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--gray-600); }
+.empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; }

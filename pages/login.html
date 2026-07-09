@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Luu Travels & Logistics</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <a href="../index.html" class="brand">
+            <img src="../assets/logo.png" alt="Luu Travels logo">
+            <span class="brand-name">Luu Travels <span>& Logistics</span></span>
+        </a>
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Log in to book and manage your trips.</p>
+
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Your password">
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <div class="form-check" style="margin-bottom:0;">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                <a href="forgot-password.html" style="font-size:0.85rem; color:var(--accent-dark); font-weight:600;">Forgot password?</a>
+            </div>
+            <div style="margin-top:20px;">
+                <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Log In</button>
+            </div>
+        </form>
+        <div class="form-footer">Don't have an account? <a href="register.html" style="color:var(--accent-dark); font-weight:600;">Register</a></div>
+        <div class="form-footer">Are you an administrator? <a href="admin-login.html" style="color:var(--primary); font-weight:600;">Admin login</a></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('loginBtn');
+        btn.disabled = true;
+        btn.textContent = 'Logging in...';
+
+        try {
+            const { profile } = await AuthManager.login({ email, password });
+            showToast('Login successful!', 'success');
+            setTimeout(() => {
+                if (profile.role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'booking.html';
+                }
+            }, 800);
+        } catch (err) {
+            showToast(err.message || 'Login failed. Check your details and try again.', 'error');
+            btn.disabled = false;
+            btn.textContent = 'Log In';
+        }
+    });
+</script>
+</body>
+</html>

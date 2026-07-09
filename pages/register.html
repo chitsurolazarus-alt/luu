@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Luu Travels & Logistics</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <a href="../index.html" class="brand">
+            <img src="../assets/logo.png" alt="Luu Travels logo">
+            <span class="brand-name">Luu Travels <span>& Logistics</span></span>
+        </a>
+        <h2>Create Your Account</h2>
+        <p class="subtitle">Register in minutes to start booking shuttle trips.</p>
+
+        <form id="registerForm" novalidate>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required placeholder="e.g. Thandi Mokoena">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required maxlength="10" placeholder="0768457061">
+                <div class="form-error" id="phoneError">Phone number must be exactly 10 digits.</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required minlength="6" placeholder="At least 6 characters">
+                <div class="password-strength"><div class="password-strength-bar" id="strengthBar"></div></div>
+                <div class="password-strength-label" id="strengthLabel"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" required placeholder="Re-enter your password">
+                <div class="form-error" id="matchError">Passwords do not match.</div>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the Terms & Conditions and Privacy Policy of Luu Travels & Logistics.</label>
+            </div>
+            <div style="margin-top:20px;">
+                <button type="submit" class="btn btn-primary btn-block" id="registerBtn">Create Account</button>
+            </div>
+        </form>
+        <div class="form-footer">Already have an account? <a href="login.html" style="color:var(--accent-dark); font-weight:600;">Log in</a></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+    const passwordInput = document.getElementById('password');
+    const strengthBar = document.getElementById('strengthBar');
+    const strengthLabel = document.getElementById('strengthLabel');
+
+    passwordInput.addEventListener('input', () => {
+        const val = passwordInput.value;
+        if (!val) { strengthBar.className = 'password-strength-bar'; strengthLabel.textContent = ''; return; }
+        const { label, className } = passwordStrength(val);
+        strengthBar.className = `password-strength-bar ${className}`;
+        strengthLabel.textContent = `Password strength: ${label}`;
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const phoneError = document.getElementById('phoneError');
+        const matchError = document.getElementById('matchError');
+        phoneError.classList.remove('show');
+        matchError.classList.remove('show');
+
+        if (!/^\d{10}$/.test(phone)) {
+            phoneError.classList.add('show');
+            return;
+        }
+        if (password !== confirmPassword) {
+            matchError.classList.add('show');
+            return;
+        }
+        if (password.length < 6) {
+            showToast('Password must be at least 6 characters.', 'error');
+            return;
+        }
+
+        const btn = document.getElementById('registerBtn');
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
+
+        try {
+            await AuthManager.register({ fullName, email, phone, password });
+            showToast('Account created! Please check your email to confirm, then log in.', 'success');
+            setTimeout(() => window.location.href = 'login.html', 2000);
+        } catch (err) {
+            showToast(err.message || 'Registration failed. Please try again.', 'error');
+            btn.disabled = false;
+            btn.textContent = 'Create Account';
+        }
+    });
+</script>
+</body>
+</html>

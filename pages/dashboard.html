@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard | Luu Travels & Logistics</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dash-page">
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../index.html" class="brand">
+            <img src="../assets/logo.png" alt="Luu Travels logo">
+            <span class="brand-name">Luu Travels <span>& Logistics</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="booking.html">Book a Trip</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn btn-outline btn-sm" id="logoutBtn" style="color:var(--secondary); border-color:var(--secondary);">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<header class="dash-header">
+    <div class="container">
+        <div class="dash-welcome">
+            <h1 id="welcomeText">Welcome back</h1>
+            <p>Manage your bookings and track your shuttle here.</p>
+        </div>
+        <a href="booking.html" class="btn btn-primary">+ Book New Trip</a>
+    </div>
+</header>
+
+<div class="dash-body">
+    <div class="dash-profile-card">
+        <div class="dash-profile-avatar" id="avatarInitial">?</div>
+        <div class="dash-profile-info">
+            <div><div class="label">Full Name</div><div class="value" id="profileName">—</div></div>
+            <div><div class="label">Email</div><div class="value" id="profileEmail">—</div></div>
+            <div><div class="label">Phone</div><div class="value" id="profilePhone">—</div></div>
+            <div><div class="label">Member Since</div><div class="value" id="profileSince">—</div></div>
+        </div>
+    </div>
+
+    <div class="dash-tabs">
+        <button class="dash-tab active" data-status="all">All Bookings</button>
+        <button class="dash-tab" data-status="pending">Pending</button>
+        <button class="dash-tab" data-status="confirmed">Confirmed</button>
+        <button class="dash-tab" data-status="completed">Completed</button>
+        <button class="dash-tab" data-status="cancelled">Cancelled</button>
+    </div>
+
+    <div class="bookings-list" id="bookingsList">
+        <div class="empty-state"><div class="icon">⏳</div>Loading your bookings...</div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/map.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

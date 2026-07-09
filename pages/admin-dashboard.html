@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Luu Travels & Logistics</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="brand">
+            <img src="../assets/logo.png" alt="Luu Travels logo" style="height:36px; width:36px;">
+            <span class="brand-name">Luu Travels <span>Admin</span></span>
+        </div>
+        <nav class="admin-nav">
+            <button class="admin-nav-item active" data-section="dashboard">📊 Dashboard</button>
+            <button class="admin-nav-item" data-section="drivers">🚗 Drivers</button>
+            <button class="admin-nav-item" data-section="trips">📅 Trips</button>
+            <button class="admin-nav-item" data-section="bookings">📋 Bookings</button>
+            <button class="admin-nav-item" data-section="ads">📢 Ads</button>
+            <button class="admin-nav-item" data-section="timeslots">⏰ Time Slots</button>
+        </nav>
+        <div class="admin-nav-footer">
+            <button class="admin-nav-item" id="logoutBtn">🚪 Logout</button>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <h1 id="sectionTitle">Dashboard Overview</h1>
+            <div class="admin-user" id="adminUserLabel">—</div>
+        </div>
+
+        <!-- DASHBOARD SECTION -->
+        <section class="admin-section active" id="section-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon">🚗</div><div><div class="stat-value" id="statDrivers">0</div><div class="stat-label">Total Drivers</div></div></div>
+                <div class="stat-card"><div class="stat-icon">📅</div><div><div class="stat-value" id="statTrips">0</div><div class="stat-label">Total Trips</div></div></div>
+                <div class="stat-card"><div class="stat-icon">📋</div><div><div class="stat-value" id="statBookings">0</div><div class="stat-label">Total Bookings</div></div></div>
+                <div class="stat-card"><div class="stat-icon">⏳</div><div><div class="stat-value" id="statPending">0</div><div class="stat-label">Pending Bookings</div></div></div>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-card-header"><h3>Recent Bookings</h3></div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="recentBookingsTable">
+                        <thead><tr><th>Reference</th><th>Customer</th><th>Route</th><th>Seats</th><th>Total</th><th>Status</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-card-header"><h3>Recent Trips</h3></div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="recentTripsTable">
+                        <thead><tr><th>Route</th><th>Driver</th><th>Departure</th><th>Seats</th><th>Price</th><th>Status</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- DRIVERS SECTION -->
+        <section class="admin-section" id="section-drivers">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>All Drivers</h3>
+                    <button class="btn btn-primary btn-sm" id="addDriverBtn">+ Add Driver</button>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="driversTable">
+                        <thead><tr><th>Name</th><th>Contact</th><th>Vehicle</th><th>Capacity</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRIPS SECTION -->
+        <section class="admin-section" id="section-trips">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>All Trips</h3>
+                    <button class="btn btn-primary btn-sm" id="addTripBtn">+ Add Trip</button>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="tripsTable">
+                        <thead><tr><th>Route</th><th>Driver</th><th>Departure</th><th>Seats</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOOKINGS SECTION -->
+        <section class="admin-section" id="section-bookings">
+            <div class="admin-card">
+                <div class="admin-card-header"><h3>All Bookings</h3></div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="bookingsTable">
+                        <thead><tr><th>Reference</th><th>Customer</th><th>Route</th><th>Seats</th><th>Total</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADS SECTION -->
+        <section class="admin-section" id="section-ads">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>Advertisements</h3>
+                    <button class="btn btn-primary btn-sm" id="addAdBtn">+ Add Ad</button>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="adsTable">
+                        <thead><tr><th>Title</th><th>Content</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIME SLOTS SECTION -->
+        <section class="admin-section" id="section-timeslots">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>Time Slots</h3>
+                    <button class="btn btn-primary btn-sm" id="addSlotBtn">+ Add Time Slot</button>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table" id="slotsTable">
+                        <thead><tr><th>Route</th><th>Departure Time</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- MODAL: ADD/EDIT DRIVER -->
+<div class="modal-overlay" id="driverModal">
+    <div class="modal-box">
+        <button class="modal-close" data-close="driverModal">&times;</button>
+        <h3>Add New Driver</h3>
+        <form id="driverForm">
+            <div class="form-group"><label>Full Name</label><input type="text" id="driverName" required></div>
+            <div class="form-row">
+                <div class="form-group"><label>Email</label><input type="email" id="driverEmail" required></div>
+                <div class="form-group"><label>Phone</label><input type="tel" id="driverPhone" required></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>License Number</label><input type="text" id="driverLicense" required></div>
+                <div class="form-group"><label>PrDP Number</label><input type="text" id="driverPrdp"></div>
+            </div>
+            <div class="form-group"><label>Vehicle Registration</label><input type="text" id="vehicleReg" required></div>
+            <div class="form-row">
+                <div class="form-group"><label>Vehicle Model</label><input type="text" id="vehicleModel" required></div>
+                <div class="form-group"><label>Vehicle Color</label><input type="text" id="vehicleColor" required></div>
+            </div>
+            <div class="form-group"><label>Capacity</label><input type="number" id="vehicleCapacity" value="14" max="14" min="1" required></div>
+            <button type="submit" class="btn btn-primary btn-block">Save Driver</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: ADD TRIP -->
+<div class="modal-overlay" id="tripModal">
+    <div class="modal-box">
+        <button class="modal-close" data-close="tripModal">&times;</button>
+        <h3>Add New Trip</h3>
+        <form id="tripForm">
+            <div class="form-group">
+                <label>Driver</label>
+                <select id="tripDriver" required><option value="">Select driver</option></select>
+            </div>
+            <div class="form-group">
+                <label>Route</label>
+                <select id="tripRoute" required>
+                    <option value="Gauteng-Limpopo">Gauteng → Limpopo</option>
+                    <option value="Limpopo-Gauteng">Limpopo → Gauteng</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Pickup Location</label><input type="text" id="tripPickup" required></div>
+                <div class="form-group"><label>Dropoff Location</label><input type="text" id="tripDropoff" required></div>
+            </div>
+            <div class="form-group"><label>Departure Date & Time</label><input type="datetime-local" id="tripDeparture" required></div>
+            <div class="form-group"><label>Distance (km)</label><input type="number" id="tripDistance" step="0.1" required></div>
+            <div class="form-group"><label>Available Seats</label><input type="number" id="tripSeats" value="14" max="14" min="1" required></div>
+            <div class="form-group"><label>Total Price per Seat (auto-calculated, editable)</label><input type="number" id="tripPrice" step="0.01" required></div>
+            <button type="submit" class="btn btn-primary btn-block">Save Trip</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: ADD AD -->
+<div class="modal-overlay" id="adModal">
+    <div class="modal-box">
+        <button class="modal-close" data-close="adModal">&times;</button>
+        <h3>Add New Ad</h3>
+        <form id="adForm">
+            <div class="form-group"><label>Title</label><input type="text" id="adTitle" required></div>
+            <div class="form-group"><label>Content</label><textarea id="adContent" rows="3" required></textarea></div>
+            <div class="form-group"><label>Image URL (optional)</label><input type="url" id="adImage" placeholder="https://..."></div>
+            <button type="submit" class="btn btn-primary btn-block">Save Ad</button>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: ADD TIME SLOT -->
+<div class="modal-overlay" id="slotModal">
+    <div class="modal-box">
+        <button class="modal-close" data-close="slotModal">&times;</button>
+        <h3>Add New Time Slot</h3>
+        <form id="slotForm">
+            <div class="form-group">
+                <label>Route</label>
+                <select id="slotRoute" required>
+                    <option value="Gauteng-Limpopo">Gauteng → Limpopo</option>
+                    <option value="Limpopo-Gauteng">Limpopo → Gauteng</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Departure Time</label><input type="time" id="slotTime" required></div>
+            <button type="submit" class="btn btn-primary btn-block">Save Time Slot</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>

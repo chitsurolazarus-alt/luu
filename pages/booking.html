@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Trip | Luu Travels & Logistics</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/booking.css">
+</head>
+<body class="booking-page">
+
+<nav class="navbar">
+    <div class="container">
+        <a href="../index.html" class="brand">
+            <img src="../assets/logo.png" alt="Luu Travels logo">
+            <span class="brand-name">Luu Travels <span>& Logistics</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="dashboard.html">My Dashboard</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn btn-outline btn-sm" id="logoutBtn" style="color:var(--secondary); border-color:var(--secondary);">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<header class="booking-header">
+    <div class="container">
+        <h1>Book Your Shuttle Trip</h1>
+        <p>Set your pickup and drop-off on the map, pick a scheduled trip, and confirm your seat.</p>
+    </div>
+</header>
+
+<div class="booking-layout">
+    <!-- MAP PANEL -->
+    <div class="map-panel">
+        <div class="map-panel-header">
+            <h3>Set Your Locations</h3>
+            <button class="btn btn-outline btn-sm" style="color:var(--primary); border-color:var(--primary);" id="clearMapBtn">Clear</button>
+        </div>
+        <div id="booking-map"></div>
+        <div class="map-info-bar">
+            <div class="info-item">
+                <div class="info-label">Distance</div>
+                <div class="info-value" id="distanceValue">— km</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Est. Price</div>
+                <div class="info-value" id="estimatedPriceValue">R0.00</div>
+            </div>
+        </div>
+        <p style="padding:0 20px 16px; font-size:0.82rem; color:var(--gray-600);">Click once on the map to set your <strong style="color:var(--success)">pickup</strong> (green), click again to set your <strong style="color:var(--danger)">drop-off</strong> (red).</p>
+    </div>
+
+    <!-- BOOKING PANEL -->
+    <div class="booking-panel">
+
+        <div class="panel-card">
+            <h3>1. Choose a Route</h3>
+            <div class="route-filter">
+                <button class="route-chip active" data-route="all">All Routes</button>
+                <button class="route-chip" data-route="Gauteng-Limpopo">Gauteng → Limpopo</button>
+                <button class="route-chip" data-route="Limpopo-Gauteng">Limpopo → Gauteng</button>
+            </div>
+            <div class="trip-list" id="tripList">
+                <div class="trip-empty">Loading available trips...</div>
+            </div>
+        </div>
+
+        <div class="panel-card" id="bookingFormCard" style="display:none;">
+            <h3>2. Trip Details</h3>
+            <div class="form-group">
+                <label>Number of Seats</label>
+                <div class="seat-selector">
+                    <button type="button" id="seatMinus">−</button>
+                    <input type="number" id="seatCount" value="1" min="1" max="14" readonly>
+                    <button type="button" id="seatPlus">+</button>
+                    <span style="font-size:0.82rem; color:var(--gray-600);" id="seatsAvailableLabel"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Payment Method</label>
+                <div class="payment-options">
+                    <div class="payment-option selected" data-method="cash">Cash<small>Pay the driver</small></div>
+                    <div class="payment-option" data-method="card">Card<small>Coming soon</small></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="specialRequests">Special Requests (optional)</label>
+                <textarea id="specialRequests" rows="3" placeholder="e.g. extra luggage, wheelchair access"></textarea>
+            </div>
+
+            <div class="price-summary">
+                <div class="price-row"><span>Price per seat</span><span id="pricePerSeat">R0.00</span></div>
+                <div class="price-row"><span>Seats</span><span id="seatsSummary">1</span></div>
+                <div class="price-row total"><span>Total</span><span id="totalPrice">R0.00</span></div>
+            </div>
+            <button class="btn btn-primary btn-block" id="confirmBookingBtn" style="margin-top:16px;">Confirm Booking</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/map.js"></script>
+<script src="../js/booking.js"></script>
+</body>
+</html>
