@@ -298,7 +298,9 @@
             const errorDiv = document.getElementById('loginError');
             const successDiv = document.getElementById('loginSuccess');
 
-            // Check if already logged in
+            // ========================================
+            // CHECK IF ALREADY LOGGED IN
+            // ========================================
             supabase.auth.getSession().then(({ data: { session } }) => {
                 if (session) {
                     const user = session.user;
@@ -308,6 +310,9 @@
                 }
             });
 
+            // ========================================
+            // FORM SUBMISSION
+            // ========================================
             loginForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
@@ -333,6 +338,8 @@
                 loginBtn.disabled = true;
 
                 try {
+                    console.log('Attempting admin login:', email);
+
                     // Attempt login with Supabase
                     const { data, error } = await supabase.auth.signInWithPassword({
                         email: email,
@@ -340,8 +347,11 @@
                     });
 
                     if (error) {
+                        console.error('Admin login error:', error);
                         throw error;
                     }
+
+                    console.log('Admin login successful:', data.user.email);
 
                     // Check if user is admin
                     if (data.user.email !== ADMIN_CREDENTIALS.email) {
@@ -358,11 +368,11 @@
                     }, 1500);
 
                 } catch (error) {
+                    console.error('Admin login error:', error);
                     errorDiv.textContent = error.message || 'Login failed. Please check your credentials.';
                     errorDiv.classList.add('show');
                     loginBtn.textContent = originalText;
                     loginBtn.disabled = false;
-                    console.error('Admin login error:', error);
                 }
             });
         });
