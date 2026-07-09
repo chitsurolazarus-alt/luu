@@ -7,13 +7,12 @@
     <link rel="icon" type="image/png" href="../assets/logo.png">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* ===== REGISTER PAGE SPECIFIC STYLES ===== */
         .auth-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1a3c5e 0%, #0f2a42 100%);
+            background: linear-gradient(135deg, #111C5A 0%, #0A1240 100%);
             padding: 100px 20px 60px;
         }
 
@@ -45,13 +44,13 @@
             margin: 0 auto 15px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #f5a623;
+            border: 3px solid #F5A623;
             padding: 3px;
         }
 
         .auth-container h2 {
             text-align: center;
-            color: #1a3c5e;
+            color: #111C5A;
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 8px;
@@ -59,7 +58,7 @@
 
         .auth-subtitle {
             text-align: center;
-            color: #888;
+            color: #8888A8;
             font-size: 0.95rem;
             margin-bottom: 30px;
         }
@@ -72,19 +71,19 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 600;
-            color: #333;
+            color: #1A1A2E;
             font-size: 0.9rem;
         }
 
         .form-group label .required {
-            color: #dc3545;
+            color: #DC3545;
             margin-left: 2px;
         }
 
         .form-group input {
             width: 100%;
             padding: 11px 16px;
-            border: 2px solid #ddd;
+            border: 2px solid #E8E8F0;
             border-radius: 8px;
             font-size: 0.95rem;
             transition: all 0.3s ease;
@@ -93,13 +92,13 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #f5a623;
+            border-color: #F5A623;
             box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
         }
 
         .form-group .input-hint {
             font-size: 0.8rem;
-            color: #888;
+            color: #8888A8;
             margin-top: 4px;
         }
 
@@ -112,7 +111,7 @@
         .btn-auth {
             width: 100%;
             padding: 14px;
-            background: #f5a623;
+            background: #F5A623;
             color: white;
             border: none;
             border-radius: 8px;
@@ -125,7 +124,7 @@
         }
 
         .btn-auth:hover {
-            background: #d4941a;
+            background: #D4941A;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
         }
@@ -144,7 +143,7 @@
         }
 
         .auth-links a {
-            color: #f5a623;
+            color: #F5A623;
             font-weight: 600;
             text-decoration: none;
         }
@@ -154,7 +153,7 @@
         }
 
         .error-message {
-            color: #dc3545;
+            color: #DC3545;
             margin-top: 15px;
             display: none;
             text-align: center;
@@ -169,7 +168,7 @@
         }
 
         .success-message {
-            color: #28a745;
+            color: #28A745;
             margin-top: 15px;
             display: none;
             text-align: center;
@@ -193,7 +192,7 @@
         .terms input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            accent-color: #f5a623;
+            accent-color: #F5A623;
             cursor: pointer;
             margin-top: 2px;
             flex-shrink: 0;
@@ -207,7 +206,7 @@
         }
 
         .terms label a {
-            color: #f5a623;
+            color: #F5A623;
             text-decoration: none;
         }
 
@@ -218,7 +217,7 @@
         .password-strength {
             height: 4px;
             border-radius: 2px;
-            background: #ddd;
+            background: #E8E8F0;
             margin-top: 6px;
             overflow: hidden;
         }
@@ -232,31 +231,30 @@
 
         .password-strength .strength-bar.weak {
             width: 25%;
-            background: #dc3545;
+            background: #DC3545;
         }
 
         .password-strength .strength-bar.medium {
             width: 50%;
-            background: #ffc107;
+            background: #FFC107;
         }
 
         .password-strength .strength-bar.strong {
             width: 75%;
-            background: #28a745;
+            background: #28A745;
         }
 
         .password-strength .strength-bar.very-strong {
             width: 100%;
-            background: #28a745;
+            background: #28A745;
         }
 
         .strength-text {
             font-size: 0.75rem;
-            color: #888;
+            color: #8888A8;
             margin-top: 3px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
             .form-row {
                 grid-template-columns: 1fr;
@@ -285,15 +283,15 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <img src="../assets/logo.png" alt="Luu Travels" class="nav-logo">
-                <span class="brand-text">Luu Travels & Logistics</span>
+                <span class="brand-text">Luu <span>Travels</span></span>
             </div>
             <div class="nav-links">
                 <a href="../index.html">Home</a>
                 <a href="../index.html#services">Services</a>
                 <a href="../index.html#about">About</a>
                 <a href="../index.html#contact">Contact</a>
-                <button id="loginBtn" class="btn-login" onclick="window.location.href='login.html'">Login</button>
-                <button id="registerBtn" class="btn-register" style="display:none;">Register</button>
+                <button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+                <button class="btn-register" style="display:none;">Register</button>
             </div>
             <button class="hamburger" id="hamburger">☰</button>
         </div>
@@ -378,9 +376,15 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/config.js"></script>
-    <script src="../js/auth.js"></script>
     <script>
+        // ===== SUPABASE CONFIGURATION =====
+        const SUPABASE_CONFIG = {
+            url: 'https://gwzpzvwermsfnputttdo.supabase.co',
+            anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3enB6dndlcm1zZm5wdXR0dGRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNzkxODYsImV4cCI6MjA5Nzk1NTE4Nn0.y4v8P0TxS4yfjj9DfWF_l1B8OBSl_ybv4vZBuVUN7Oc'
+        };
+
+        const supabase = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+
         document.addEventListener('DOMContentLoaded', function() {
             const registerForm = document.getElementById('registerForm');
             const registerBtn = document.getElementById('registerBtnSubmit');
@@ -392,10 +396,11 @@
             const strengthText = document.getElementById('strengthText');
 
             // Check if user is already logged in
-            if (auth.isAuthenticated()) {
-                window.location.href = 'dashboard.html';
-                return;
-            }
+            supabase.auth.getSession().then(({ data: { session } }) => {
+                if (session) {
+                    window.location.href = 'dashboard.html';
+                }
+            });
 
             // Password strength checker
             passwordInput.addEventListener('input', function() {
@@ -412,19 +417,19 @@
                 if (strength.score <= 1) {
                     strengthBar.classList.add('weak');
                     strengthText.textContent = 'Weak password';
-                    strengthText.style.color = '#dc3545';
+                    strengthText.style.color = '#DC3545';
                 } else if (strength.score === 2) {
                     strengthBar.classList.add('medium');
                     strengthText.textContent = 'Medium password';
-                    strengthText.style.color = '#ffc107';
+                    strengthText.style.color = '#FFC107';
                 } else if (strength.score === 3) {
                     strengthBar.classList.add('strong');
                     strengthText.textContent = 'Strong password';
-                    strengthText.style.color = '#28a745';
+                    strengthText.style.color = '#28A745';
                 } else {
                     strengthBar.classList.add('very-strong');
                     strengthText.textContent = 'Very strong password';
-                    strengthText.style.color = '#28a745';
+                    strengthText.style.color = '#28A745';
                 }
             });
 
@@ -441,9 +446,9 @@
             // Confirm password validation
             confirmPasswordInput.addEventListener('input', function() {
                 if (this.value && this.value !== passwordInput.value) {
-                    this.style.borderColor = '#dc3545';
+                    this.style.borderColor = '#DC3545';
                 } else {
-                    this.style.borderColor = '#ddd';
+                    this.style.borderColor = '#E8E8F0';
                 }
             });
 
@@ -508,39 +513,61 @@
                 registerBtn.disabled = true;
 
                 try {
-                    const userData = {
-                        fullName: fullName,
+                    // 1. Sign up with Supabase Auth
+                    const { data: authData, error: authError } = await supabase.auth.signUp({
                         email: email,
-                        phone: phone,
-                        idNumber: idNumber,
-                        passportNumber: passportNumber || null
-                    };
+                        password: password,
+                        options: {
+                            data: {
+                                full_name: fullName,
+                                phone: phone
+                            }
+                        }
+                    });
 
-                    const result = await auth.signUp(email, password, userData);
-
-                    if (result.success) {
-                        successDiv.textContent = 'Registration successful! Please check your email to verify your account.';
-                        successDiv.classList.add('show');
-                        registerForm.reset();
-                        strengthBar.style.width = '0';
-                        strengthText.textContent = '';
-
-                        // Redirect to login after 3 seconds
-                        setTimeout(() => {
-                            window.location.href = 'login.html';
-                        }, 3000);
-                    } else {
-                        errorDiv.textContent = result.error || 'Registration failed. Please try again.';
-                        errorDiv.classList.add('show');
-                        registerBtn.textContent = originalText;
-                        registerBtn.disabled = false;
+                    if (authError) {
+                        throw authError;
                     }
+
+                    if (!authData.user) {
+                        throw new Error('Failed to create user account');
+                    }
+
+                    // 2. Save user profile to users table
+                    const { error: profileError } = await supabase
+                        .from('users')
+                        .insert([{
+                            id: authData.user.id,
+                            email: email,
+                            full_name: fullName,
+                            phone: phone,
+                            id_number: idNumber,
+                            passport_number: passportNumber || null,
+                            role: 'customer'
+                        }]);
+
+                    if (profileError) {
+                        console.error('Profile save error:', profileError);
+                        // Don't throw here - user is created, just log the error
+                    }
+
+                    successDiv.textContent = 'Registration successful! Please check your email to verify your account.';
+                    successDiv.classList.add('show');
+                    registerForm.reset();
+                    strengthBar.style.width = '0';
+                    strengthText.textContent = '';
+
+                    // Redirect to login after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 3000);
+
                 } catch (error) {
-                    errorDiv.textContent = 'An unexpected error occurred. Please try again.';
+                    console.error('Registration error:', error);
+                    errorDiv.textContent = error.message || 'Registration failed. Please try again.';
                     errorDiv.classList.add('show');
                     registerBtn.textContent = originalText;
                     registerBtn.disabled = false;
-                    console.error('Registration error:', error);
                 }
             });
         });
