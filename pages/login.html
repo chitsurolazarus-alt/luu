@@ -355,8 +355,7 @@
             // ========================================
             supabase.auth.getSession().then(({ data: { session } }) => {
                 if (session) {
-                    console.log('User already logged in:', session.user.email);
-                    // Check if admin
+                    console.log('👤 User already logged in:', session.user.email);
                     if (session.user.email === ADMIN_CREDENTIALS.email) {
                         window.location.href = 'admin-dashboard.html';
                     } else {
@@ -390,20 +389,20 @@
                 successDiv.classList.remove('show');
                 successDiv.textContent = '';
 
-                // Validate inputs
+                // Validate
                 if (!email || !password) {
                     errorDiv.textContent = 'Please fill in all fields';
                     errorDiv.classList.add('show');
                     return;
                 }
 
-                // Show loading state
+                // Show loading
                 const originalText = loginBtn.textContent;
                 loginBtn.textContent = 'Logging in...';
                 loginBtn.disabled = true;
 
                 try {
-                    console.log('Attempting to login:', email);
+                    console.log('🔑 Attempting to login:', email);
 
                     const { data, error } = await supabase.auth.signInWithPassword({
                         email: email,
@@ -411,11 +410,11 @@
                     });
 
                     if (error) {
-                        console.error('Login error:', error);
+                        console.error('❌ Login error:', error);
                         throw error;
                     }
 
-                    console.log('Login successful:', data.user.email);
+                    console.log('✅ Login successful:', data.user.email);
 
                     // Store remember me preference
                     if (rememberMe) {
@@ -424,10 +423,10 @@
                         localStorage.removeItem('rememberEmail');
                     }
 
-                    successDiv.textContent = 'Login successful! Redirecting...';
+                    successDiv.textContent = '✅ Login successful! Redirecting...';
                     successDiv.classList.add('show');
 
-                    // Check if admin and redirect
+                    // Redirect after delay
                     setTimeout(() => {
                         if (email === ADMIN_CREDENTIALS.email) {
                             window.location.href = 'admin-dashboard.html';
@@ -439,7 +438,7 @@
                     }, 1500);
 
                 } catch (error) {
-                    console.error('Login error:', error);
+                    console.error('❌ Login error:', error);
                     errorDiv.textContent = error.message || 'Login failed. Please check your credentials.';
                     errorDiv.classList.add('show');
                     loginBtn.textContent = originalText;
