@@ -80,8 +80,7 @@
             margin-left: 2px;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 11px 16px;
             border: 2px solid #E8E8F0;
@@ -89,11 +88,9 @@
             font-size: 0.95rem;
             transition: all 0.3s ease;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: white;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #F5A623;
             box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
@@ -103,12 +100,6 @@
             font-size: 0.8rem;
             color: #8888A8;
             margin-top: 4px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
         }
 
         .btn-auth {
@@ -258,91 +249,6 @@
             margin-top: 3px;
         }
 
-        /* ===== ID/PASSPORT TOGGLE ===== */
-        .id-toggle-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            background: #F8F9FA;
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid #E8E8F0;
-        }
-
-        .id-toggle-btn {
-            flex: 1;
-            padding: 10px 15px;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            background: transparent;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: #8888A8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .id-toggle-btn:hover {
-            background: rgba(245, 166, 35, 0.05);
-        }
-
-        .id-toggle-btn.active {
-            border-color: #F5A623;
-            background: white;
-            color: #111C5A;
-            box-shadow: 0 2px 8px rgba(245, 166, 35, 0.15);
-        }
-
-        .id-toggle-btn .icon {
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .id-input-container {
-            position: relative;
-        }
-
-        .id-input-container .input-hint {
-            font-size: 0.8rem;
-            color: #8888A8;
-            margin-top: 4px;
-        }
-
-        .id-input-container .validation-icon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.1rem;
-            display: none;
-        }
-
-        .id-input-container .validation-icon.valid {
-            display: block;
-            color: #28A745;
-        }
-
-        .id-input-container .validation-icon.invalid {
-            display: block;
-            color: #DC3545;
-        }
-
-        .id-input-container input.valid {
-            border-color: #28A745;
-        }
-
-        .id-input-container input.invalid {
-            border-color: #DC3545;
-        }
-
-        @media (max-width: 600px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
         @media (max-width: 480px) {
             .auth-container {
                 padding: 30px 20px;
@@ -355,10 +261,6 @@
             .auth-logo {
                 width: 60px;
                 height: 60px;
-            }
-
-            .id-toggle-container {
-                flex-direction: column;
             }
         }
     </style>
@@ -391,51 +293,28 @@
             <p class="auth-subtitle">Join Luu Travels and start booking your journeys</p>
 
             <form id="registerForm">
-                <!-- Full Name -->
                 <div class="form-group">
                     <label for="registerFullName">Full Name <span class="required">*</span></label>
                     <input type="text" id="registerFullName" placeholder="Enter your full name" required>
                 </div>
 
-                <!-- Email -->
                 <div class="form-group">
                     <label for="registerEmail">Email Address <span class="required">*</span></label>
                     <input type="email" id="registerEmail" placeholder="Enter your email" required autocomplete="email">
                 </div>
 
-                <!-- Phone -->
                 <div class="form-group">
                     <label for="registerPhone">Phone Number <span class="required">*</span></label>
                     <input type="tel" id="registerPhone" placeholder="Enter 10-digit phone number" required>
                     <div class="input-hint">e.g., 0712345678</div>
                 </div>
 
-                <!-- ID/Passport Toggle -->
                 <div class="form-group">
-                    <label>Identification Type <span class="required">*</span></label>
-                    <div class="id-toggle-container">
-                        <button type="button" class="id-toggle-btn active" data-type="id" id="idToggleBtn">
-                            <span class="icon">🪪</span>
-                            South African ID
-                        </button>
-                        <button type="button" class="id-toggle-btn" data-type="passport" id="passportToggleBtn">
-                            <span class="icon">🛂</span>
-                            Passport
-                        </button>
-                    </div>
+                    <label for="registerIdNumber">ID / Passport Number <span class="required">*</span></label>
+                    <input type="text" id="registerIdNumber" placeholder="Enter ID or Passport number" required>
+                    <div class="input-hint">ID (13 digits) or Passport (6-20 alphanumeric)</div>
                 </div>
 
-                <!-- ID/Passport Number Input -->
-                <div class="form-group">
-                    <label for="registerIdNumber" id="idLabel">ID Number <span class="required">*</span></label>
-                    <div class="id-input-container">
-                        <input type="text" id="registerIdNumber" placeholder="Enter 13-digit ID number" required>
-                        <span class="validation-icon" id="validationIcon"></span>
-                    </div>
-                    <div class="input-hint" id="idHint">13-digit South African ID number</div>
-                </div>
-
-                <!-- Password -->
                 <div class="form-group">
                     <label for="registerPassword">Password <span class="required">*</span></label>
                     <input type="password" id="registerPassword" placeholder="Create a password (min 6 characters)" required>
@@ -445,13 +324,11 @@
                     <div class="strength-text" id="strengthText"></div>
                 </div>
 
-                <!-- Confirm Password -->
                 <div class="form-group">
                     <label for="registerConfirmPassword">Confirm Password <span class="required">*</span></label>
                     <input type="password" id="registerConfirmPassword" placeholder="Confirm your password" required>
                 </div>
 
-                <!-- Terms -->
                 <div class="terms">
                     <input type="checkbox" id="termsCheck" required>
                     <label for="termsCheck">
@@ -498,92 +375,6 @@
             const confirmPasswordInput = document.getElementById('registerConfirmPassword');
             const strengthBar = document.getElementById('strengthBar');
             const strengthText = document.getElementById('strengthText');
-
-            // ID/Passport toggle elements
-            const idToggleBtn = document.getElementById('idToggleBtn');
-            const passportToggleBtn = document.getElementById('passportToggleBtn');
-            const idInput = document.getElementById('registerIdNumber');
-            const idLabel = document.getElementById('idLabel');
-            const idHint = document.getElementById('idHint');
-            const validationIcon = document.getElementById('validationIcon');
-
-            let selectedType = 'id'; // 'id' or 'passport'
-
-            // ========================================
-            // ID/PASSPORT TOGGLE
-            // ========================================
-            function toggleIdType(type) {
-                selectedType = type;
-
-                // Update button styles
-                idToggleBtn.classList.remove('active');
-                passportToggleBtn.classList.remove('active');
-
-                if (type === 'id') {
-                    idToggleBtn.classList.add('active');
-                    idLabel.textContent = 'ID Number *';
-                    idInput.placeholder = 'Enter 13-digit ID number';
-                    idHint.textContent = '13-digit South African ID number';
-                    idInput.maxLength = 13;
-                    idInput.pattern = '[0-9]{13}';
-                    idInput.value = '';
-                } else {
-                    passportToggleBtn.classList.add('active');
-                    idLabel.textContent = 'Passport Number *';
-                    idInput.placeholder = 'Enter passport number';
-                    idHint.textContent = 'Enter your passport number (e.g., A1234567)';
-                    idInput.maxLength = 20;
-                    idInput.pattern = '[A-Z0-9]{6,20}';
-                    idInput.value = '';
-                }
-
-                // Clear validation
-                idInput.classList.remove('valid', 'invalid');
-                validationIcon.className = 'validation-icon';
-                validationIcon.textContent = '';
-            }
-
-            // ID toggle button click
-            idToggleBtn.addEventListener('click', function() {
-                toggleIdType('id');
-            });
-
-            // Passport toggle button click
-            passportToggleBtn.addEventListener('click', function() {
-                toggleIdType('passport');
-            });
-
-            // ========================================
-            // ID/PASSPORT VALIDATION
-            // ========================================
-            idInput.addEventListener('input', function() {
-                const value = this.value.trim();
-                let isValid = false;
-
-                if (selectedType === 'id') {
-                    // ID: 13 digits only
-                    isValid = /^[0-9]{13}$/.test(value);
-                } else {
-                    // Passport: 6-20 alphanumeric characters
-                    isValid = /^[A-Z0-9]{6,20}$/i.test(value);
-                }
-
-                if (value.length === 0) {
-                    this.classList.remove('valid', 'invalid');
-                    validationIcon.className = 'validation-icon';
-                    validationIcon.textContent = '';
-                } else if (isValid) {
-                    this.classList.remove('invalid');
-                    this.classList.add('valid');
-                    validationIcon.className = 'validation-icon valid';
-                    validationIcon.textContent = '✓';
-                } else {
-                    this.classList.remove('valid');
-                    this.classList.add('invalid');
-                    validationIcon.className = 'validation-icon invalid';
-                    validationIcon.textContent = '✗';
-                }
-            });
 
             // ========================================
             // PASSWORD STRENGTH
@@ -648,7 +439,7 @@
                 const fullName = document.getElementById('registerFullName').value.trim();
                 const email = document.getElementById('registerEmail').value.trim();
                 const phone = document.getElementById('registerPhone').value.trim();
-                const idValue = idInput.value.trim();
+                const idNumber = document.getElementById('registerIdNumber').value.trim();
                 const password = passwordInput.value;
                 const confirmPassword = confirmPasswordInput.value;
                 const termsChecked = document.getElementById('termsCheck').checked;
@@ -660,7 +451,7 @@
                 successDiv.textContent = '';
 
                 // Validate inputs
-                if (!fullName || !email || !phone || !idValue || !password) {
+                if (!fullName || !email || !phone || !idNumber || !password) {
                     errorDiv.textContent = 'Please fill in all required fields';
                     errorDiv.classList.add('show');
                     return;
@@ -684,21 +475,6 @@
                     return;
                 }
 
-                // Validate ID/Passport
-                if (selectedType === 'id') {
-                    if (!/^[0-9]{13}$/.test(idValue)) {
-                        errorDiv.textContent = 'Please enter a valid 13-digit ID number';
-                        errorDiv.classList.add('show');
-                        return;
-                    }
-                } else {
-                    if (!/^[A-Z0-9]{6,20}$/i.test(idValue)) {
-                        errorDiv.textContent = 'Please enter a valid passport number (6-20 alphanumeric characters)';
-                        errorDiv.classList.add('show');
-                        return;
-                    }
-                }
-
                 if (!termsChecked) {
                     errorDiv.textContent = 'Please agree to the Terms and Conditions';
                     errorDiv.classList.add('show');
@@ -711,6 +487,8 @@
                 registerBtn.disabled = true;
 
                 try {
+                    console.log('Attempting to register user:', email);
+
                     // 1. Sign up with Supabase Auth
                     const { data: authData, error: authError } = await supabase.auth.signUp({
                         email: email,
@@ -718,15 +496,17 @@
                         options: {
                             data: {
                                 full_name: fullName,
-                                phone: phone,
-                                id_type: selectedType
+                                phone: phone
                             }
                         }
                     });
 
                     if (authError) {
+                        console.error('Auth error:', authError);
                         throw authError;
                     }
+
+                    console.log('Auth response:', authData);
 
                     if (!authData.user) {
                         throw new Error('Failed to create user account');
@@ -738,10 +518,12 @@
                         email: email,
                         full_name: fullName,
                         phone: phone,
-                        id_number: selectedType === 'id' ? idValue : null,
-                        passport_number: selectedType === 'passport' ? idValue : null,
+                        id_number: idNumber,
+                        passport_number: null,
                         role: 'customer'
                     };
+
+                    console.log('Saving user profile:', userData);
 
                     const { error: profileError } = await supabase
                         .from('users')
@@ -757,12 +539,6 @@
                     registerForm.reset();
                     strengthBar.style.width = '0';
                     strengthText.textContent = '';
-                    idInput.classList.remove('valid', 'invalid');
-                    validationIcon.className = 'validation-icon';
-                    validationIcon.textContent = '';
-
-                    // Reset to ID type
-                    toggleIdType('id');
 
                     // Redirect to login after 3 seconds
                     setTimeout(() => {
@@ -783,6 +559,7 @@
             // ========================================
             supabase.auth.getSession().then(({ data: { session } }) => {
                 if (session) {
+                    console.log('User already logged in:', session.user.email);
                     window.location.href = 'dashboard.html';
                 }
             });
