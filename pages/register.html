@@ -513,7 +513,7 @@
                     }
 
                     // ========================================
-                    // STEP 2: Save user profile to users table
+                    // STEP 2: Save user profile to users table (NO ID NUMBER!)
                     // ========================================
                     const userData = {
                         id: authData.user.id,
@@ -531,7 +531,13 @@
 
                     if (profileError) {
                         console.error('❌ Profile save error:', profileError);
-                        // Don't throw here - user is created in auth, just log the error
+                        // If profile save fails, but auth succeeded, show error but don't block
+                        if (profileError.code === '23505') {
+                            // Duplicate key - user already exists in table
+                            console.log('User already exists in users table');
+                        } else {
+                            throw profileError;
+                        }
                     } else {
                         console.log('✅ Profile saved successfully');
                     }
